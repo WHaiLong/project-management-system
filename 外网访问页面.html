@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目管理系统 - 外网访问</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .access-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .access-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .access-card h3 i {
+            font-size: 1.5em;
+        }
+        
+        .access-url {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .credentials {
+            background: #fff8e1;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .credentials h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .credential-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .credential-item:last-child {
+            border-bottom: none;
+        }
+        
+        .credential-label {
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .credential-value {
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .instructions {
+            background: #e8f4fd;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #2196F3;
+        }
+        
+        .instructions h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-rocket"></i> 项目管理系统</h1>
+            <p>基于若依框架的企业级项目管理解决方案</p>
+            <div class="status-badge">
+                <i class="fas fa-check-circle"></i> 服务运行正常
+            </div>
+        </div>
+        
+        <div class="access-grid">
+            <div class="access-card">
+                <h3><i class="fas fa-desktop"></i> 前端界面</h3>
+                <div class="access-url" id="frontend-url">
+                    http://localhost:8081
+                </div>
+                <a href="http://localhost:8081" class="btn" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> 立即访问前端
+                </a>
+            </div>
+            
+            <div class="access-card">
+                <h3><i class="fas fa-server"></i> 后端管理</h3>
+                <div class="access-url" id="backend-url">
+                    http://localhost:8080
+                </div>
+                <a href="http://localhost:8080" class="btn" target="_blank">
+                    <i class="fas fa-cog"></i> 访问管理后台
+                </a>
+            </div>
+        </div>
+        
+        <div class="credentials">
+            <h3><i class="fas fa-key"></i> 管理员凭据</h3>
+            <div class="credential-item">
+                <span class="credential-label">用户名：</span>
+                <span class="credential-value">admin</span>
+            </div>
+            <div class="credential-item">
+                <span class="credential-label">密码：</span>
+                <span class="credential-value">admin123</span>
+            </div>
+            <div class="credential-item">
+                <span class="credential-label">数据库用户：</span>
+                <span class="credential-value">pm_user</span>
+            </div>
+            <div class="credential-item">
+                <span class="credential-label">数据库密码：</span>
+                <span class="credential-value">Pm@123456</span>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> 外网访问配置指南</h3>
+            <ol>
+                <li><strong>使用ngrok（推荐）</strong>：访问 <a href="https://ngrok.com" target="_blank">ngrok.com</a> 下载并安装</li>
+                <li><strong>启动ngrok隧道</strong>：运行 <code>ngrok http 8081</code>（前端）和 <code>ngrok http 8080</code>（后端）</li>
+                <li><strong>获取外网地址</strong>：ngrok会提供类似 <code>https://xxx.ngrok.io</code> 的地址</li>
+                <li><strong>云服务器部署</strong>：将项目部署到阿里云/腾讯云等云服务器</li>
+                <li><strong>配置域名</strong>：绑定域名并配置SSL证书</li>
+            </ol>
+        </div>
+        
+        <div class="footer">
+            <p>生成时间：<span id="current-time"></span></p>
+            <p>项目进度：98% | 目标完成时间：21:00</p>
+            <p>GitHub仓库：<a href="https://github.com/WHaiLong/project-management-system" target="_blank">https://github.com/WHaiLong/project-management-system</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // 更新当前时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // 尝试获取外网IP
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const frontendUrl = document.getElementById('frontend-url');
+                const backendUrl = document.getElementById('backend-url');
+                
+                // 更新为外网访问地址（需要端口转发）
+                frontendUrl.innerHTML = `http://${data.ip}:8081 (需要端口转发)`;
+                backendUrl.innerHTML = `http://${data.ip}:8080 (需要端口转发)`;
+            })
+            .catch(error => {
+                console.log('无法获取外网IP，使用本地地址');
+            });
+    </script>
+</body>
+</html>
