@@ -1,22 +1,34 @@
 # 项目管理系统后端
 
-## 📁 项目结构
+## 📁 项目结构（实际结构）
 ```
 backend/
 ├── src/main/java/com/project/management/
-│   ├── ProjectManagementApplication.java  # 主启动类
-│   ├── controller/     # 控制器层
-│   ├── service/        # 服务层
-│   ├── repository/     # 数据访问层
-│   ├── domain/         # 实体类
-│   └── config/         # 配置类
+│   ├── ProjectManagementApplication.java      # 主启动类
+│   ├── controller/                           # 控制器层
+│   │   └── ProjectController.java           # 项目管理控制器
+│   ├── service/                             # 服务层
+│   │   ├── ProjectService.java              # 项目管理服务接口
+│   │   └── TaskService.java                 # 任务管理服务接口
+│   ├── repository/                          # 数据访问层
+│   │   ├── ProjectRepository.java           # 项目管理数据访问
+│   │   └── (其他Repository)
+│   ├── domain/                              # 领域层
+│   │   ├── entity/                          # 实体类
+│   │   │   ├── Project.java                 # 项目实体
+│   │   │   ├── Task.java                    # 任务实体
+│   │   │   └── WorkHour.java                # 工时实体
+│   │   ├── vo/                              # 视图对象
+│   │   └── dto/                             # 数据传输对象
+│   └── config/                              # 配置类
 ├── src/main/resources/
-│   ├── application.yml          # 主配置文件
-│   ├── application-dev.yml      # 开发环境配置(H2)
-│   ├── application-prod.yml     # 生产环境配置(MySQL)
-│   └── mapper/                  # MyBatis SQL映射文件
-├── pom.xml                      # Maven配置文件
-└── README.md                    # 本文件
+│   ├── application.yml                      # 主配置文件
+│   ├── application-dev.yml                  # 开发环境配置(H2)
+│   ├── application-prod.yml                 # 生产环境配置(MySQL)
+│   ├── application-druid.yml                # Druid连接池配置
+│   └── mapper/                              # MyBatis SQL映射文件
+├── pom.xml                                  # Maven配置文件
+└── README.md                                # 本文件
 ```
 
 ## 🚀 技术栈
@@ -32,14 +44,15 @@ backend/
 
 ### 1. 开发环境运行
 ```bash
-cd backendmvn spring-boot:run
+cd backend
+mvn spring-boot:run
 ```
 
 ### 2. 访问地址
 - **应用首页**: http://localhost:8080
 - **H2控制台**: http://localhost:8080/h2-console
 - **Druid监控**: http://localhost:8080/druid
-- **Swagger文档**: http://localhost:8080/swagger-ui.html
+- **API文档**: http://localhost:8080/swagger-ui.html
 
 ### 3. 默认账号
 - **管理员**: admin / admin123
