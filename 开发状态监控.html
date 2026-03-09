@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>项目管理系统 - 开发状态监控</title>
+    <meta http-equiv="refresh" content="30">
+    <style>
+        body { font-family: monospace; margin: 20px; background: #0d1117; color: #c9d1d9; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .timestamp { color: #8b949e; font-size: 14px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 20px; }
+        .card-title { color: #58a6ff; margin-bottom: 15px; font-size: 18px; }
+        .status-item { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
+        .status-success { color: #3fb950; }
+        .status-warning { color: #d29922; }
+        .status-error { color: #f85149; }
+        .status-running { color: #58a6ff; }
+        .progress-bar { height: 8px; background: #21262d; border-radius: 4px; overflow: hidden; margin: 5px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #238636, #3fb950); }
+        .links a { color: #58a6ff; text-decoration: none; margin-right: 15px; }
+        .links a:hover { text-decoration: underline; }
+        .terminal { background: #000; color: #00ff00; padding: 15px; border-radius: 4px; font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 项目管理系统 - 开发状态监控</h1>
+            <div class="timestamp" id="timestamp">加载时间: $(date)</div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-title">📊 服务状态</div>
+                <div class="status-item">
+                    <span>后端服务 (8080): </span>
+                    <span class="status-success">✅ 运行中</span>
+                </div>
+                <div class="status-item">
+                    <span>前端Vue服务 (8081): </span>
+                    <span class="status-warning">⚡ 启动中</span>
+                </div>
+                <div class="status-item">
+                    <span>备用前端 (8082): </span>
+                    <span class="status-success">✅ 运行中</span>
+                </div>
+                <div class="status-item">
+                    <span>H2数据库: </span>
+                    <span class="status-success">✅ 可用</span>
+                </div>
+                <div class="status-item">
+                    <span>MySQL数据库: </span>
+                    <span class="status-running">🔄 安装中</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">👥 开发团队进度</div>
+                <div class="status-item">
+                    <span>后端团队 (4人): </span>
+                    <span class="status-running">🔄 进行中</span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+                </div>
+                <div class="status-item">
+                    <span>前端团队 (2人): </span>
+                    <span class="status-running">🔄 进行中</span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+                </div>
+                <div class="status-item">
+                    <span>测试团队 (1人): </span>
+                    <span class="status-running">🔄 进行中</span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+                </div>
+                <div class="status-item">
+                    <span>运维团队 (1人): </span>
+                    <span class="status-running">🔄 进行中</span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🎯 今日目标进度</div>
+                <div class="status-item">
+                    <span>总体进度: </span>
+                    <span class="status-success">40%</span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+                </div>
+                <div class="status-item">
+                    <span>剩余时间: </span>
+                    <span class="status-warning">10小时40分钟</span>
+                </div>
+                <div class="status-item">
+                    <span>开始时间: </span>
+                    <span>2026-03-09 12:00</span>
+                </div>
+                <div class="status-item">
+                    <span>目标完成: </span>
+                    <span>2026-03-09 24:00</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔗 快速访问</div>
+                <div class="links">
+                    <a href="http://localhost:8080" target="_blank">🔧 若依后台</a>
+                    <a href="http://localhost:8082" target="_blank">🌐 备用前端</a>
+                    <a href="http://localhost:8080/h2-console" target="_blank">🗄️ H2控制台</a>
+                    <a href="https://github.com/WHaiLong/project-management-system" target="_blank">💾 GitHub</a>
+                </div>
+                <div style="margin-top: 15px;">
+                    <div>若依后台账号: admin/admin123</div>
+                    <div>H2控制台: sa/(空密码)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <div class="card-title">📝 最新动态</div>
+            <div class="terminal">
+                <div>[13:26] 🔧 前端服务启动中，启用备用方案</div>
+                <div>[13:25] 🗄️ MySQL安装进行中，使用H2开发</div>
+                <div>[13:20] 🚀 8人团队开始并行开发</div>
+                <div>[13:15] ✅ 若依框架启动成功</div>
+                <div>[13:10] 📁 数据库设计完成（6张表）</div>
+                <div>[13:00] 🎯 今日目标：完成所有开发</div>
+                <div>[12:40] 💾 代码上传GitHub完成</div>
+                <div>[12:20] 👥 多Agent团队建立完成</div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <div class="card-title">📋 下一步任务</div>
+            <div style="line-height: 1.6;">
+                <div>• [13:30-14:00] 完善后端Service实现</div>
+                <div>• [14:00-15:00] 开发核心API接口</div>
+                <div>• [15:00-16:00] 完善前端页面</div>
+                <div>• [16:00-17:00] 集成测试准备</div>
+                <div>• [17:00-18:00] 数据库切换（MySQL）</div>
+                <div>• [18:00-20:00] 系统集成测试</div>
+                <div>• [20:00-22:00] Bug修复和优化</div>
+                <div>• [22:00-24:00] 部署和上线验证</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #8b949e; font-size: 12px;">
+            页面每30秒自动刷新 | 最后更新: <span id="updateTime">$(date)</span>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('timestamp').textContent = '当前时间: ' + now.toLocaleString('zh-CN');
+            document.getElementById('updateTime').textContent = now.toLocaleString('zh-CN');
+            
+            // 更新剩余时间
+            const target = new Date();
+            target.setHours(24, 0, 0, 0);
+            const diff = target - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.querySelector('.status-item:nth-child(2) span:nth-child(2)').textContent = 
+                hours + '小时' + minutes + '分钟';
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
