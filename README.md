@@ -199,3 +199,49 @@ npm run serve
 **当前状态**: 开发暂停，结构整理完成
 
 **🚀 项目管理系统 - 让团队协作更高效！**
+
+## 🗄️ MySQL数据库配置
+
+### 数据库信息
+- **数据库类型**: MySQL
+- **主机**: localhost:3306
+- **数据库名**: project_management
+- **用户名**: root
+- **密码**: 28465@Whl
+- **状态**: ✅ 已安装完成
+
+### 快速启动
+1. **启动MySQL服务**:
+   ```bash
+   # macOS
+   brew services start mysql
+   
+   # Linux
+   sudo systemctl start mysql
+   ```
+
+2. **初始化数据库**:
+   ```bash
+   ./scripts/init-mysql-database.sh
+   ```
+
+3. **测试连接**:
+   ```bash
+   ./scripts/test-mysql-connection.sh
+   ```
+
+### 项目配置
+在 `application.yml` 中使用以下配置:
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/project_management
+    username: root
+    password: 28465@Whl
+    driver-class-name: com.mysql.cj.jdbc.Driver
+```
+
+### 管理工具
+- **初始化脚本**: `scripts/init-mysql-database.sh`
+- **测试脚本**: `scripts/test-mysql-connection.sh`
+- **配置模板**: `config/mysql-config.yml`
