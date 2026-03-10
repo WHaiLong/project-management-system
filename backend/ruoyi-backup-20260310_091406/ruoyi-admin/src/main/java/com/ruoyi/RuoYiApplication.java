@@ -1,0 +1,22 @@
+package com.ruoyi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+/**
+ * 若依启动程序
+ */
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+public class RuoYiApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(RuoYiApplication.class, args);
+        System.out.println("==========================================");
+        System.out.println("(♥◠‿◠)ﾉﾞ  若依启动成功   ლ(´ڡ`ლ)ﾞ");
+        System.out.println("==========================================");
+        System.out.println("系统地址: http://localhost:8080");
+        System.out.println("管理员账号: admin");
+        System.out.println("管理员密码: admin123");
+        System.out.println("==========================================");
+    }
+}
