@@ -29,6 +29,12 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!-- RuoYi公共模块 -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-common</artifactId>
+        </dependency>
+
         <!-- 阿里数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
