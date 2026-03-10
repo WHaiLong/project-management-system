@@ -19,11 +19,6 @@
         <module>ruoyi-generator</module>
         <module>ruoyi-quartz</module>
         <module>ruoyi-system</module>
-        
-        <!-- 自定义模块 -->
-        <module>../project</module>
-        <module>../task</module>
-        <module>../workhour</module>
     </modules>
 
     <parent>
@@ -52,7 +47,7 @@
         <kaptcha.version>2.3.3</kaptcha.version>
         <thymeleaf-shiro.version>2.1.0</thymeleaf-shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
-        <c3p0.version>0.9.5.5</c3p0.version>
+
         <servlet-api.version>4.0.1</servlet-api.version>
         <quartz.version>2.3.2</quartz.version>
     </properties>
@@ -171,12 +166,7 @@
                 <version>${jjwt.version}</version>
             </dependency>
             
-            <!-- 数据库连接池 -->
-            <dependency>
-                <groupId>com.mchange</groupId>
-                <artifactId>c3p0</artifactId>
-                <version>${c3p0.version}</version>
-            </dependency>
+
             
             <!-- Servlet API -->
             <dependency>
